@@ -1,0 +1,399 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Beej's Guide to C Programming</title>
+<link rel="stylesheet" href="bgc.css" type="text/css">
+
+<style>
+body {
+	background-color: white;
+	color: black;
+	font-family: "Times New Roman", "Times", "Georgia", serif;
+	font-size: 12pt;
+	margin: 35pt;
+	margin-top: 10pt;
+	margin-bottom: 10pt;
+	direction: rtl;
+}
+
+#adsense {
+  float: right;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+
+*.joetable {
+	border-width: 1px;
+	border-style: solid;
+	padding: 0.2em;
+}
+
+*.navtable {
+	font-family: "Helvetica","Arial",sans-serif;
+	font-size: 0.8em;
+	border-width: 1px;
+	border-style: solid;
+	background-color: #e7e7e7;
+	border-color: #666;
+	padding: 0.5em;
+}
+
+*.sect1title {
+	font-family: "Helvetica","Arial",sans-serif;
+	font-size: 1.7em;
+	font-weight: bold;
+	margin-bottom: 0.0em;
+}
+
+*.sect2title {
+	font-family: "Helvetica","Arial",sans-serif;
+	font-size: 1.16em;
+	font-weight: bold;
+	margin-top: 1.5em;
+	margin-bottom: 0.0em;
+}
+
+*.sect3title {
+	font-family: "Helvetica","Arial",sans-serif;
+	font-weight: bold;
+	margin-top: 1.5em;
+	margin-bottom: 0.0em;
+}
+
+*.guidetitle {
+	font-family: "Helvetica","Arial",sans-serif;
+	font-weight: bold;
+	font-size: 2em;
+	margin-bottom: 0em;
+}
+
+*.guidesubtitle {
+	font-family: "Helvetica","Arial",sans-serif;
+	font-weight: bold;
+	font-style: italic;
+	font-size: 1.666em;
+	margin-top: 0em;
+}
+
+*.guidetitleauthor {
+	font-family: "Helvetica","Arial",sans-serif;
+	font-weight: bold;
+	margin-bottom: 0em;
+}
+
+*.guideversion,*.guidedate {
+	font-family: "Helvetica","Arial",sans-serif;
+	font-size: 0.8em;
+}
+
+*.guidecopyright {
+	font-family: "Helvetica","Arial",sans-serif;
+	font-size: 0.666em;
+}
+
+*.guidetitleemail {
+	font-family: "Courier New","Courier",monospace; 
+	font-weight: bold;
+	font-size: 0.8em;
+}
+
+*.mainsectbreak {
+	margin-top: 1em;
+	color: #000;
+	border: 0px;
+	background-color: #000;
+	height: 1px;
+	width: 100%;
+}
+
+*.mainsecthr {
+	color: #000;
+	border: 0px;
+	background-color: #000;
+	height: 0.2em;
+	width: 100%;
+}
+
+*.floatleft {
+	float:left;
+}
+
+*.floatright {
+	float:right;
+}
+
+*.padfive {
+	padding-top:5px;
+	padding-left:5px;
+	padding-right:5px;
+	padding-bottom:5px;
+}
+
+*.type,*.const,*.var,*.email,*.func,*.tt,*.operator {
+	font-family: "Courier New","Courier",monospace; 
+	font-size: 0.9em;
+	direction: ltr;
+	unicode-bidi: embed;
+}
+
+*.code,*.screen {
+	font-family: "Courier New","Courier",monospace; 
+	font-size: 0.765em;
+}
+
+*.em1 {
+	font-size: 1em;
+}
+
+*.com {
+	font-weight: bold;
+}
+
+*.var {
+	font-style: oblique;
+}
+
+*.func {
+	font-weight: bold;
+	direction: ltr;
+	unicode-bidi: embed;
+}
+
+*.titlefunc {
+	font-family: "Courier New","Courier",monospace; 
+	font-weight: bold;
+}
+
+*.titletype {
+	font-family: "Courier New","Courier",monospace; 
+	font-weight: bold;
+}
+
+*.titlevar {
+	font-style: oblique;
+	font-weight: bold;
+}
+
+*.command {
+	font-family: "Courier New","Courier",monospace; 
+	font-weight:bold;
+}
+
+*.singleborder {
+	border: #000,solid,2px;
+	border-color: #222;
+	border-style: solid;
+	border-width: 1px;
+	margin: 1em;
+	padding: 1em;
+}
+
+pre.code {
+	background-color: #e7e7e7;
+	border-color: #000;
+	border-style: solid;
+	border-width: 1px;
+	border-right-width: 2px;
+	border-bottom-width: 2px;
+	margin: 0.2em;
+	padding: 0.2em;
+	direction: ltr;
+}
+
+pre.screen {
+	font-weight: bold;
+	background-color: #e0e0e0;
+	border-color: #000;
+	border-style: solid;
+	border-right-style: dashed;
+	border-bottom-style: dashed;
+	border-width: 1px;
+	margin: 0.2em;
+	padding: 0.2em;
+}
+
+</style>
+
+</head>
+
+<body bgcolor="#ffffff">
+תרגום חלקי (בינתיים) מתוך המדריך של Beej לשפת C: <a href="http://beej.us/guide/bgc/output/html/singlepage/bgc.html">http://beej.us/guide/bgc/output/html/singlepage/bgc.html</a>
+<br/>
+נועד ללימוד עצמי, לא להפצה
+<br/>
+ידע נדרש: HelloWorld, משתנים, אופרטורים, ביטויים, הצהרות
+
+<hr class="mainsectbreak"/><h2 class="sect1title">4. <a name="bbrevisited">מבט נוסף על אבני הבניין</a></h2><hr class="mainsecthr"/>
+
+
+<blockquote><p><i>"הכל בסדר אדוני?"</i><br/>
+<i>"לא, לא הכל בסדר, איזה פושטק מילא את השאלון על 'האם יש לך זיכרון טוב'"</i><br/>
+<i>"אה, זה היית אתה אדוני, אתה לא זוכר?"</i><br/>
+--קריסטן ודייב ליסטר, גמד אדום</p></blockquote>
+
+<p>לפני שנתחיל עם פונקציות בחלק הבא, נקשר את זה במהירות למה שהיה מאוד חשוב לזכור מתחילת המדריך. מה בעצם זה היה... נו, טוב, גיליתי את זה כבר בכותרת של הפרק, אבל בואו נמשיך לדבר כאילו זה לא קרה.</p>
+
+<p> אכן, זה היה מבט נוסף על אבני בניין, ואיך אתם יכולים לקחת מפרט ולהפוך אותו לחתיכות קטנות שתוכלו לתרגם בקלות לחתיכות קוד. רציתי שתאמינו לי שאני אספר לכם בהמשך על כמה מהחתיכות הבסיסיות האלו, ואני רק מזכיר לכם, למקרה שלא שמתם לב, שכל ההצהרות שהיו לנו שם הן אבני בניין קטנות ובסיסיות שאתם יכולים לשלב בתוכנות שלכם.</p>
+
+<p>לדוגמה, אם המפרט אומר:</p>
+
+<dl><dt></dt><dd><p><b>תרגיל:</b>כתבו תוכנה שמקבלת שוב ושוב קלט מן המשתמש ומדפיסה את המספרים בין 0 לבין המספר שהוכנס. אם המשתמש מכניס מספר קטן או שווה לאפס, התוכנה תסתיים.</p></dd></dl>
+
+<p>עכשיו יש לכם מספיק ידע כדי להבחין בכל אבני הבניין הבסיסיות שיוכלו לגרום לתוכנה הזאת להתקיים. תצטרכו לגנוב שימושים ב<b><tt class="func">scanf()</tt></b> וב<b><tt class="func">printf()</tt></b> מדוגמאות קודמות, אבל כל שאר החלקים מתאימים להצהרות שונות שראיתם בפרק הקודם.</p>
+
+<p>שימו לב שככה, על הדרך, אני יכול לחשוב על דרכים רבות לממש את התרגיל הזה. אם חשבתם על מימוש שעובד, יופי לכם! ברור שהוא לא בהכרח יהיה הכי טוב, אבל מה זה בכלל "הכי טוב"? (ובכן, מסתבר שההגדרה של "הכי טוב" היא מה שהמרצה או הבוס שלכם חושב שהוא הכי טוב, אבל בואו נהיה שמחים ותיאורטיים לרגע. אחח).</p>
+
+<p>טוב! קדימה, פרקו את התרגיל שלמעלה, ומצאו את המבנה הבסיסי שבו תשתמשו. בעצם, אם כבר אז קודדו אותו, ובדקו שהוא עובד!</p> 
+
+
+
+<hr class="mainsectbreak"/><h2 class="sect1title">5. <a name="functions">פונקציות</a></h2><hr class="mainsecthr"/>
+
+
+<p>כל עוד הפרק הקודם על אבני בניין עדיין טרי לכם בראש, בואו נדמיין עולם מטורף שבו תוכנה היא כל כך מסובכת, וכל כך גדולה להחריד, שאם אתם דוחפים את כולה ל
+<b><tt class="func">main()</tt></b>, היא נעשית מסורבלת.</p>
+
+<p> למה אני מתכוון? הדימוי הכי טוב שאני יכול לחשוב עליו הוא שהכי קל לבני אדם לקרוא, לשנות ולהבין תוכנות כאשר הן מחולקות לחלקים נוחים, כמו שהכי נוח לקרוא ספר כאשר הוא מחולק לפסקאות.</p>
+
+<p>ניסיתם אי פעם לקרוא ספר בלי הפרדה לפסקאות? זה קשה, אנשים, תאמינו לי. פעם קראתי את
+ <i> "קפטן סינגלטון"</i> של דניאל דפו כי הייתי מעריץ שלו, אבל למען השם, הבנאדם לא הפריד שם אפילו פיסקה אחת. זה היה רומן אלים.</p>
+
+<p>אבל אני סוטה מהעניין. מה שנעשה כדי להקל על עצמנו זה לשים חלק מאבני הבניין האלו בפונקציות משלהן כשהן הופכות לגדולות מדי, או כשהן עושות משהו שונה משאר הקוד. לדוגמה, ייתכן שהתוכנה מהתרגיל קוראת מספר, ואז מחשבת ומציגה את סכום כל המספרים מ1 ועד המספר שהוכנס. הגיוני לשים את הקוד לחישוב הסכום בפונקציה נפרדת כך שגם הקוד יהיה נקי יותר וגם יהיה ניתן לעשות <i>שימוש חוזר</i> בפונקציה במקום אחר.</p>
+
+<p>שימוש חוזר הוא אחד הסיבות העיקריות לקיומן של פונקציות. קחו את <b><tt class="func">printf()</tt></b> לדוגמה. היא די מסובכת עם כל הפיענוח שהיא עושה למבנה המחרוזת ועם כל היכולת ממש להוציא את האותיות למסך וכל זה. דמיינו לעצמכם שהייתם צריכים לכתוב את כל הקוד הזה כל פעם שהייתם רוצים להוציא למסך מחרוזת מסכנה... חבל, עדיף לשים את כל זה בפונקציה ופשוט לקרוא לה כמה פעמים, מבינים?</p>
+
+<p> כבר ראיתם כמה קריאות לפונקציות, ואפילו ראיתם <i>הגדרה</i> של פונקציה אחת, הלא היא הפונקציה המלכותית <b><tt class="func">main()</tt></b> (ההגדרה היא איפה שממש שמים את הקוד שעושה את העבודה של הפונקציה.) אבל הפונקציה <b><tt class="func">main()</tt></b> מוגדרת בצורה לא לגמרי מלאה, וזה מותר בגלל סיבות היסטוריות לחלוטין. נפרט על זה מאוחר יותר. עכשיו נגדיר ונקרא לפונקציה נורמלית בשם <b><tt class="func">plus_one()</tt></b> שמקבלת פרמטר מספרי אחד ומחזירה את הערך שלו פלוס אחד:</p>
+
+<pre class="code">
+int plus_one(int n) /* THE DEFINITION */
+{
+    return n + 1;
+}
+
+int main(void)
+{
+    int i = 10, j;
+    
+    j = plus_one(i); /* THE CALL */
+
+    printf("i + 1 is %d\n", j);
+
+    return 0;
+}
+</pre>
+
+
+<p>(לפני שאני שוכח, שימו לב שהגדרתי את הפונקציה לפני שהשתמשתי בה. אם לא הייתי עושה את זה, הקומפיילר לא היה יודע שהיא קיימת כשהיה מקמפל את <b><tt class="func">main()</tt></b> והיה נותן שגיאה בגלל קריאה לפונקציה לא מוכרת. יש דרך יותר נכונה לכתוב את הקוד שלעיל, עם prototype (אבטיפוס) של פונקציה, אבל על זה נדבר מאוחר יותר.)</p>
+
+<p>אז יש לנו כאן הגדרה לפונקציה  <b><tt class="func">plus_one()</tt></b>.
+המילה הראשונה, <nobr><tt class="type">int</tt></nobr>, היא הטיפוס של הערך המוחזר של הפונקציה. משמע: כשאנחנו חוזרים מהפונקציה ורוצים להשתמש בערך הזה ב<b><tt class="func">main()</tt></b>, הערך של הביטוי (ובמקרה של פונקציה הביטוי הוא הפונקציה עצמה) יהיה מהסוג הזה. ואיזה צירוף מקרים מופלא, גם הטיפוס של המשתנה <i><tt class="var">j</tt></i>, המשתנה שיחזיק את הערך המוחזר של הפונקציה גם הוא <nobr><tt class="type">int</tt></nobr>.
+כן, זה בכוונה.</p>
+
+<p>אחר כך יש את השם של הפונקציה, ואחריו  <i>רשימת פרמטרים</i> בסוגריים. הפרמטרים מקבילים לערכים שבסוגריים בקריאה לפונקציה... אבל לא חייבים<i> להיות להם אותם שמות</i>.  שימו לב שאנחנו קוראים לפונקציה עם המשתנה  
+ <i><tt class="var">i</tt></i>, בעוד שלמשתנה בהגדרה של הפונקציה קוראים <i><tt class="var">n</tt></i>. וזה בסדר גמור, כי הקומפיילר דואג לעניינים האלו בשבילכם.</p>
+
+<p>בתוך <b><tt class="func">plus_one()</tt></b> עצמה אנחנו עושים כמה דברים בשורה אחת. יש לנו את הביטוי <tt class="tt">n + 1</tt> שעובר אומדן לפני הצהרת <b><tt class="func">return</tt></b> כך שאם אנחנו מעבירים את הערך 10 לתוך הפונקציה, היא תאמוד <tt class="tt">10 + 1</tt>,
+שביקום שלנו יוצא 11, ורק אז תחזיר את הערך הזה.</p>
+
+<p>כשאנחנו חוזרים בחזרה לקריאה ב<b><tt class="func">main()</tt></b>, אנחנו עושים השמה ל<i><tt class="var">j</tt></i>, והוא מקבל את הערך המוחזר שהיה 11. ותראו מה זה! <i><tt class="var">j</tt></i> הפך להיות <i><tt class="var">i</tt></i> פלוס אחד! בדיוק מה שהפונקציה היתה אמורה לעשות! זה הזמן לחגוג</p>
+
+<p>[<i>קולות כלליים של מסיבה.</i>]</p>
+
+<p>טוב, די. לפני כמה פסקאות הזכרתי שהשמות ברשימת הפרמטרים של הגדרת פונקציה מתאימים ל<i>ערכים</i> שמועברים לתוך הפונקציה. במקרה של <b><tt class="func">plus_one()</tt></b>, אתם יכולים לקרוא לה איך שבא לכם, כל עוד אתם קוראים לה עם פרמטר מטיפוס <nobr><tt class="type">int</tt></nobr>. לדוגמה, כל הקריאות הבאות הן חוקיות:</p>
+
+<pre class="code">
+int a = 5, b = 10;
+
+plus_one(a);     /* the type of a is int */
+plus_one(10);    /* the type of 10 is int */
+plus_one(1+10);  /* the type of the whole expression is still int */
+plus_one(a+10);  /* the type of the whole expression is still int */
+plus_one(a+b);   /* the type of the whole expression is still int */
+plus_one(plus_one(a));  /* oooo! return value is int, so it's ok!  */
+</pre>
+
+    
+<p>אם קשה לכם להבין את השורה האחרונה שם, פשוט תעברו על הביטויים אחד אחד, החל מהסוגריים הפנימיים ביותר (כי הסוגריים הפנימיים ביותר עוברים אומדן ראשונים, זוכרים?) . אז תתחילו עם ה<i><tt class="var">a</tt></i> ותגידו לעצמכם "כן, זה <nobr><tt class="type">int</tt></nobr>שמתאים לקרוא איתו לפונקציה <b><tt class="func">plus_one()</tt></b>, אז נקרא לה, והיא תחזיר <nobr><tt class="type">int</tt></nobr>, וזה טיפוס שמתאים לקרוא איתו ל<b><tt class="func">plus_one()</tt></b> החיצונית", ואנחנו מסודרים.</p>
+
+<p>אבל רגע, מה עם הערך המוחזר של כל זה? אנחנו לא עושים לו השמה לשום מקום! לאן הוא הולך? ובכן, בשורה האחרונה הקריאה הפנימית ל<b><tt class="func">plus_one()</tt></b> משמשת כדי לקרוא שוב ל<b><tt class="func">plus_one()</tt></b> אבל חוץ מזה , אתם צודקים - לא משתמשים בערך המוחזר. זה חוקי, אבל די חסר טעם. אלא אם אתם כותבים קוד דוגמה לצרכי הדגמה.</p>
+
+<p>זה כאילו היינו כותבים "5" על פתק, מעבירים אותו לפונקציה <b><tt class="func">plus_one()</tt></b> והיא היתה טורחת ומוסיפה לו אחד, וכותבת "6" על פתק ומעבירה אותו בחזרה לנו, ואנחנו היינו זורקים אותו לזבל מבלי להסתכל עליו. אנחנו כאלה חלאות.</p>
+
+<p>הזכרתי את המילה "ערך" כמה פעמים, ויש לזה סיבה טובה: כאשר אנחנו מעבירים פרמטרים לפונקציות, אנחנו עושים משהו שנהוג לקרוא לו <i>העברה לפי ערך</i>. וזה דורש תת-פרק משלו.</p>
+
+
+
+<h3 class="sect2title">5.1. <a name="passvalue">העברה לפי ערך</a></h3>
+
+
+<p>כשמעבירים ערך לפונקציה, נוצר עותק של הערך הזה בעולם המיסתורי והקסום שנקרא <i>המחסנית</i>. (המחסנית היא רק חתיכת זיכרון אי שם שהתוכנה מקצה עליה זכרון. חלק מהמחסנית משמש כדי לאחסן עותקים של ערכים שמועברים לפונקציות.)</p>
+
+<p>המשמעות המעשית היא זו: מאחר שהפונקציה פועלת על עותק של הערך, היא לא יכולה להשפיע ישירות על הערך בפונקציה הקוראת. כך שאם הייתם רוצים להגדיל ערך באחד, הקוד הבא לא היה עושה את העבודה:</p>
+
+<pre class="code">
+void increment(int a)
+{
+    a++;
+}
+
+int main(void)
+{
+    int i = 10;
+
+    increment(i);
+
+    return 0;
+}
+</pre>
+
+
+<p>רגע, רגע, לעצור הכל! מה זה הטיפוס <nobr><tt class="type">void</tt></nobr> הזה לערך המוחזר? האם אני מנסה לעבוד עליכם? ממש לא. המשמעות שלו היא שהפונקציה לא מחזירה שום ערך. להירגע!</p>
+
+<p>בכל מקרה, אם יורשה לי להמשיך, אתם עלולים לחשוב שהערך של <i><tt class="var">i</tt></i> אחרי הקריאה יהיה 11, כי זה מה שהאופרטור <tt class="operator">++</tt> עושה, לא? אז לא. אם ככה, מה בעצם קורה כאן?</p>
+
+<p>זה מה שקורה: כשאתם מעבירים <i><tt class="var">i</tt></i> לפונקציה <b><tt class="func">increment()</tt></b> נוצר עותק במחסנית, נכון? על העותק הזה עובדת<b><tt class="func">increment()</tt></b> , ולא על המקור. המקור <i><tt class="var">i</tt></i>  נשאר כמו שהוא. אפילו נתנו לעותק את השם <i><tt class="var">a</tt></i>, נכון? זה שם ברשימת הפרמטרים של הגדרת הפונקציה. כך שאנחנו בהחלט מגדילים את <i><tt class="var">a</tt></i>, אבל איך זה עוזר לנו? לא עוזר! הא!</p>
+
+<p>זאת הסיבה שבדוגמה הקודמת עם הפונקציה <b><tt class="func">plus_one()</tt></b>
+ <b><tt class="func">החזרנו</tt></b> את הערך המקומי שהשתנה, כך שיכולנו לראות אותו שוב ב<b><tt class="func">main()</tt></b>.</p>
+
+<p>בטח אתם חושבים לעצמכם "די מגביל, הא? כאילו אפשר להשיג רק פיסת מידע אחת מפונקציה." אבל יש דרך נוספת להשיג מידע בחזרה. אנשים קוראים לה <i>העברה לפי התייחסות</i>. אבל שום שם מפונפן לא יסיח את דעתכם מן העובדה ש<i>כל</i> מה שמעבירים לפונקציה <i>ללא יוצא מן הכלל</i> מועתק למחסנית, והפונקציה <i>תמיד</i>  עובדת על העותק המקומי הזה. זכרו זאת, גם כשנדבר על מה שנקרא "העברה לפי ערך.</p>
+
+<p>אבל זה סיפור לפעם אחרת.</p>
+
+
+
+
+
+<h3 class="sect2title">5.2. <a name="prototypes">Pototypes של פונקציות</a></h3>
+
+
+<p>נסו להיזכר שאי שם בעידן הקרח לפני כמה שניות, הזכרתי שצריך להגדיר את הפונקציה לפני שמשתמשים בה, אחרת הקומפיילר לא ידע עליה מראש, ויפציץ בהודעת שגיאה.</p>
+
+<p>זה לא לגמרי נכון. אפשר להודיע לקומפיילר מראש שנשתמש בפונקציה מסוג מסויים בעלת רשימת פרמטרים מסויימת וככה אפשר להגדיר את הפונקציה בכל מקום שהוא, כל עוד ה<i>prototype של הפונקציה</i>  הוגדר קודם.</p>
+
+<p>למרבה המזל, prototype של פונקציה הוא עניין פשוט למדי. זה פשוט עותק של השורה הראשונה של הגדרת פונקציה, עם נקודה פסיק בסוף למען הסדר הטוב. לדוגמה, הקוד הבא קורא לפונקציה שמוגדרת מאוחר יותר, כי הprototype שלה הוכרז כבר:</p>
+
+<pre class="code">
+int foo(void); /* this is the prototype! */
+
+int main(void)
+{
+    int i;
+    
+    i = foo();
+
+    return 0;
+}
+
+int foo(void) /* this is the definition, just like the prototype! */
+{
+    return 3490;
+}
+</pre>
+
+
+<p>ייתכן ששמתם לב למשהו קטן בקוד הזה... השתמשנו ב<b><tt class="func">printf()</tt></b> הזכורה לטוב מבלי להגדיר אותה או להצהיר על prototype שלה! איך אנחנו מצליחים להתחמק עם ביזוי חוק שכזה? אנחנו לא, למעשה. ישנו prototype והוא נמצא בקובץ header בשם <i><tt class="var">stdio.h</tt></i> שאנחנו כללנו באמצעות <tt class="tt">#include</tt> זוכרים? אז אנחנו זכאים.</p>
+
+</body>
+</html>

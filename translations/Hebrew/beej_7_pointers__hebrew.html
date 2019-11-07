@@ -1,0 +1,482 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Beej's Guide to C Programming</title>
+<link rel="stylesheet" href="bgc.css" type="text/css">
+
+<style>
+body {
+	background-color: white;
+	color: black;
+	font-family: "Times New Roman", "Times", "Georgia", serif;
+	font-size: 12pt;
+	margin: 35pt;
+	margin-top: 10pt;
+	margin-bottom: 10pt;
+	direction: rtl;
+}
+
+#adsense {
+  float: right;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+
+*.joetable {
+	border-width: 1px;
+	border-style: solid;
+	padding: 0.2em;
+}
+
+*.navtable {
+	font-family: "Helvetica","Arial",sans-serif;
+	font-size: 0.8em;
+	border-width: 1px;
+	border-style: solid;
+	background-color: #e7e7e7;
+	border-color: #666;
+	padding: 0.5em;
+}
+
+*.sect1title {
+	font-family: "Helvetica","Arial",sans-serif;
+	font-size: 1.7em;
+	font-weight: bold;
+	margin-bottom: 0.0em;
+}
+
+*.sect2title {
+	font-family: "Helvetica","Arial",sans-serif;
+	font-size: 1.16em;
+	font-weight: bold;
+	margin-top: 1.5em;
+	margin-bottom: 0.0em;
+}
+
+*.sect3title {
+	font-family: "Helvetica","Arial",sans-serif;
+	font-weight: bold;
+	margin-top: 1.5em;
+	margin-bottom: 0.0em;
+}
+
+*.guidetitle {
+	font-family: "Helvetica","Arial",sans-serif;
+	font-weight: bold;
+	font-size: 2em;
+	margin-bottom: 0em;
+}
+
+*.guidesubtitle {
+	font-family: "Helvetica","Arial",sans-serif;
+	font-weight: bold;
+	font-style: italic;
+	font-size: 1.666em;
+	margin-top: 0em;
+}
+
+*.guidetitleauthor {
+	font-family: "Helvetica","Arial",sans-serif;
+	font-weight: bold;
+	margin-bottom: 0em;
+}
+
+*.guideversion,*.guidedate {
+	font-family: "Helvetica","Arial",sans-serif;
+	font-size: 0.8em;
+}
+
+*.guidecopyright {
+	font-family: "Helvetica","Arial",sans-serif;
+	font-size: 0.666em;
+}
+
+*.guidetitleemail {
+	font-family: "Courier New","Courier",monospace; 
+	font-weight: bold;
+	font-size: 0.8em;
+}
+
+*.mainsectbreak {
+	margin-top: 1em;
+	color: #000;
+	border: 0px;
+	background-color: #000;
+	height: 1px;
+	width: 100%;
+}
+
+*.mainsecthr {
+	color: #000;
+	border: 0px;
+	background-color: #000;
+	height: 0.2em;
+	width: 100%;
+}
+
+*.floatleft {
+	float:left;
+}
+
+*.floatright {
+	float:right;
+}
+
+*.padfive {
+	padding-top:5px;
+	padding-left:5px;
+	padding-right:5px;
+	padding-bottom:5px;
+}
+
+*.type,*.const,*.var,*.email,*.func,*.tt,*.operator {
+	font-family: "Courier New","Courier",monospace; 
+	font-size: 0.9em;
+	direction: ltr;
+	unicode-bidi: embed;
+}
+
+*.code,*.screen {
+	font-family: "Courier New","Courier",monospace; 
+	font-size: 0.765em;
+	direction: ltr;
+}
+
+*.em1 {
+	font-size: 1em;
+}
+
+*.com {
+	font-weight: bold;
+}
+
+*.var {
+	font-style: oblique;
+}
+
+*.func {
+	font-weight: bold;
+	direction: ltr;
+	unicode-bidi: embed;
+}
+
+*.titlefunc {
+	font-family: "Courier New","Courier",monospace; 
+	font-weight: bold;
+}
+
+*.titletype {
+	font-family: "Courier New","Courier",monospace; 
+	font-weight: bold;
+}
+
+*.titlevar {
+	font-style: oblique;
+	font-weight: bold;
+}
+
+*.command {
+	font-family: "Courier New","Courier",monospace; 
+	font-weight:bold;
+}
+
+*.singleborder {
+	border: #000,solid,2px;
+	border-color: #222;
+	border-style: solid;
+	border-width: 1px;
+	margin: 1em;
+	padding: 1em;
+}
+
+pre.code {
+	background-color: #e7e7e7;
+	border-color: #000;
+	border-style: solid;
+	border-width: 1px;
+	border-right-width: 2px;
+	border-bottom-width: 2px;
+	margin: 0.2em;
+	padding: 0.2em;
+	direction: ltr;
+}
+
+pre.screen {
+	font-weight: bold;
+	background-color: #e0e0e0;
+	border-color: #000;
+	border-style: solid;
+	border-right-style: dashed;
+	border-bottom-style: dashed;
+	border-width: 1px;
+	margin: 0.2em;
+	padding: 0.2em;
+}
+
+</style>
+
+</head>
+
+<body bgcolor="#ffffff">
+תרגום חלקי (בינתיים) מתוך המדריך של Beej לשפת C: <a href="http://beej.us/guide/bgc/output/html/singlepage/bgc.html">http://beej.us/guide/bgc/output/html/singlepage/bgc.html</a>
+<br/>
+נועד ללימוד עצמי, לא להפצה
+<br/>
+ידע נדרש: HelloWorld, משתנים, אופרטורים, ביטויים, הצהרות, פונקציות, scope.
+
+<hr class="mainsectbreak"/><h2 class="sect1title">7. <a name="pointers">פויינטרים -- הו, האימה!</a></h2><hr class="mainsecthr"/>
+
+
+<p>
+פויינטרים (מצביעים) הם אחד הדברים הכי מעוררי אימה בשפת C. למעשה, הם הדבר היחיד שהופך את השפה הזו למאתגרת. ולמה כל זה?
+</p>
+
+<p>
+כי למען האמת הם יכולים לגרום למכת חשמל לעלות דרך המקלדת ו<i>להדביק</i> לכם את הידיים לצמיתות למקשים, וכך תהיו מקוללים להעביר את חייכם מול המקלדת.
+</p>
+
+<p>
+טוב, לא באמת. אבל הם כן יכולים לגרום כאב ראש רציני אם אתם לא יודעים מה אתם עושים כשאתם מתעסקים איתם.
+</p>
+
+
+
+<h3 class="sect2title">7.1. <a name="ptmem">זיכרון ומשתנים</a></h3>
+
+
+<p>
+הזיכרון של המחשב מכיל כל מיני סוגים של נתונים, נכון? הוא יכול להחזיק נתונים מסוג 
+<nobr><tt class="type">float</tt></nobr>, <nobr><tt class="type">int</tt></nobr>, או כל דבר אחר. כדי שיהיה קל לעבוד עם הזיכרון, לכל בייט בזכרון יש מספר. המספרים הללו גדלים ככל שעולים בזיכרון. אפשר לחשוב על זה כרצף של קופסאות ממוספרות, שכל קופסה מחזיקה מידע בגודל בייט. המספר שמייצג כל קופסה נקרא ה<i>כתובת</i> שלה.</p>
+
+<p>
+לא כל סוגי הנתונים משתמשים בבייט. למשל,  <nobr><tt class="type">long</tt></nobr> הוא לרוב ארבעה בייטים, אבל הגודל שלו למעשה תלוי במערכת. אפשר להשתמש באופרטור <tt class="operator">sizeof()</tt> כדי לקבוע בכמה בייטים של זכרון משתמש סוג משתנה כלשהו. (אני יודע ש<tt class="operator">sizeof()</tt> נראה יותר כמו פונקציה מאשר כמו אופרטור, אבל זה אופרטור.)</p>
+
+<pre class="code">
+printf("a long uses %d bytes of memory\n", sizeof(long));
+</pre>
+
+
+<p>
+אם יש לכם סוג משתנה שמשתמש ביותר מבייט אחד של זיכרון, הבייטים של הנתונים האלו תמיד צמודים זה לזה בזיכרון. לפעמים הם מסודרים ולפעמים לא, אבל זה תלוי פלטפורמה, ולרוב כבר מטפלים בזה בשבילכם בלי שתצטרכו לדאוג לגבי סידורי בייטים קטנוניים.
+</p>
+
+<p>
+אז אם ברשותכם נתקדם עם זה, תופים בבקשה וקצת מוזיקה דרמטית לקראת ההגדרה של פויינטר, <i>פויינטר הוא הכתובת של נתונים בזכרון</i>. דמיינו עכשיו את הקטע הקלאסי מ2001 אודיסאה בחלל.בה בום בה בום בה בום בהההההה!
+</p>
+
+<p>
+טוב, אולי היה יותר מדי מתח, הא? אין הרבה מיסתורין בפויינטרים. הם רק כתובת לנתונים. בדיוק כמו ש<nobr><tt class="type">int</tt></nobr> יכול להיות <tt class="tt">12</tt>, פויינטר יכול להיות כתובת לנתונים.</p>
+
+<p>
+בדרך כלל מעדיפים ליצור פויינטר לנתונים שאוחסנו במשתנה, ולא לסתם נתונים מקריים שהיו במקום כלשהו בזכרון. פויינטר למשתנה בדרך כלל מועיל יותר.
+</p>
+
+<p>
+אז אם יש לנו <nobr><tt class="type">int</tt></nobr>, ואנחנו רוצים ליצור פויינטר אליו, מה שאנחנו רוצים זה דרך כלשהי להשיג את הכתובת של ה<nobr><tt class="type">int</tt></nobr> הזה, נכון? כי בכל זאת הפויינטר הוא רק ה<i>כתובת של</i> הנתונים. באיזה אופרטור נשתמש לדעתכם כדי למצוא את  <i>הכתובת של</i> ה<nobr><tt class="type">int</tt></nobr>?</p>
+
+<p>
+ובכן, זה בטח יפתיע ויזעזע אתכם, קוראיי העדינים, שאנחנו משתמשים באופרטור  <tt class="operator">הכתובת-של</tt> (שהוא במקרה אמפרסנד: "<tt class="operator">&amp;</tt>") על מנת למצוא את הכתובת של הנתונים. אמפרסנד.
+</p>
+
+<p>
+אז בשביל דוגמה זריזה, נציג כאן  <i>format
+specifier</i> חדש ל<b><tt class="func">printf()</tt></b> כדי שתוכלו להדפיס פויינטר.
+אתם כבר יודעים ש<tt class="tt">%d</tt> מדפיס מספר דצימלי, נכון? ובכן, <tt class="tt">%p</tt> מדפיס פויינטר. הפויינטר הזה ייראה כמו מספר מזובל (וייתכן שהוא מודפס בהקסדצימלי במקום בדצימלי), אבל זה פשוט המספר של הקופסה שבה הנתונים מאוחסנים.( או המספר של הקופסה שבה מאוחסן הבייט הראשון של הנתונים. אם הנתונים מתפרשים על כמה בייטים.) כמעט בכל המקרים, כולל המקרה שלנו, אין חשיבות למספר שאתם רואים, ואני מציג אותו כאן רק למטרות הדגמה של אופרטור <tt class="operator">הכתובת-של</tt>.</p>
+
+<pre class="code">
+#include &lt;stdio.h&gt;
+
+int main(void)
+{
+    int i = 10;
+
+    printf("The value of i is %d, and its address is %p\n", i, &amp;i);
+
+    return 0;
+}
+</pre>
+
+
+<p>על הלפטופ שלי זה מדפיס:</p>
+
+<pre class="screen">
+The value of i is 10, and its address is 0xbffff964
+</pre>
+
+
+<p>
+(ואני יכול להשוויץ כאן קצת, ולהגיד שמנסיוני הכתובת כאן נראית לי כמו כתובת במחסנית... וזה אכן המקרה, מאחר שזה משתנה מקומי, וכל המשתנים המקומיים הולכים למחסנית. איזה מגניב אני, הא? אל תענו.)</p>
+
+
+
+<h3 class="sect2title">7.2. <a name="pttypes">סוגי פויינטרים</a></h3>
+
+
+<p>יופי, עכשיו אתם יכולים לקחת את הכתובת של משתנה ולהדפיס אותה בהצלחה למסך. עוד שורה לקורות חיים. זה השלב שבו אתם תופסים אותי בעורף ושואלים בעדינות למה צריך את הפויינטרים המחורבנים האלו.
+</p>
+
+<p>
+שאלה מצוינת, ונענה עליה מיד אחרי הפיר-סו-מות!
+</p>
+
+<dl><dt></dt><dd><p><tt class="tt" style="direction: rtl;">יחידת שירותי ניקוי רובוטית לבית מבית אקמי. שיפור דרמטי בנקיון הבית, או שתושמד לאלתר. 
+רות סוף.
+</tt></p></dd></dl>
+
+<p>
+תודה שחזרתם אלינו למדריך של ביג' למה-שזה-לא-יהיה. בפעם הקודמת דיברנו על איך להשתמש בפויינטרים. ומה שאנחנו עומדים לעשות עכשיו הוא לאחסן פויינטר במשתנה, כך שנוכל להשתמש בו בהמשך. אפשר לזהות את <i>סוג הפויינטר</i> על פי הכוכבית (<nobr><tt class="type">*</tt></nobr>) שנמצאת לפני שם המשתנה ואחרי הסוג שלו:</p>
+
+<pre class="code">
+int main(void)
+{
+    int i;  /* i's type is "int" */
+    int *p; /* p's type is "pointer to an int", or "int-pointer" */
+
+    return 0;
+}
+</pre>
+
+
+<p>
+אז יש לנו פה משתנה שהוא בעצמו פויינטר, והוא יכול להצביע ל <nobr><tt class="type">int</tt></nobr>ים אחרים. אנחנו יודעים שהוא מצביע ל<nobr><tt class="type">int</tt></nobr>ים על פי זה שהוא מסוג  <nobr><tt class="type">int*</tt></nobr> (קוראים את זה
+"int-pointer").</p>
+
+<p>
+כשעושים השמה למשתנה פויינטר, הסוג של החלק הימני בהשמה חייב להיות אותו סוג של המשתנה פויינטר. למרבה המזל כשלוקחים את 
+<tt class="operator">הכתובת-של</tt> משתנה, התוצאה היא מסוג פויינטר לאותו סוג משתנה, כך שהשמות כמו ההשמה הבאה עובדות יופי:</p>
+
+<pre class="code">
+int i;
+int *p; /* p is a pointer, but is uninitialized and points to garbage */
+
+p = &amp;i; /* p now "points to" i */
+</pre>
+
+
+<p>
+מבינים? אני יודע שלא הכל מתחבר לכם, כי עדיין לא ראיתם שימוש אמיתי במשתנה פויינטר, אבל אנחנו מתקדמים בצעדים קטנים כדי שאף אחד לא יאבד כיוון. ועכשיו נכיר לכם את האופרטור "אנטי-הכתובת-של". שזה כמו 
+<tt class="operator">הכתובת-של</tt> רק בדיוק ההיפך.</p>
+
+
+
+
+
+<h3 class="sect2title">7.3. <a name="defer">Dereferencing</a></h3>
+
+
+<p>
+לפויינטר, שידוע גם בתור "כתובת", לפעמים קוראים גם <i>reference</i>. אבל איך, למען השם, יכולים להיות כל כך הרבה שמות לאותו הדבר? האמת היא שאין לי מושג, אבל הם אכן אותו הדבר, ואפשר להשתמש בכל אחד מהשמות.
+</p>
+
+<p>
+הסיבה היחידה שאני מספר לכם את זה היא כדי שהשם של האופרטור יישמע לכם הגיוני. כשיש לכם פויינטר למשתנה ("רפרנס למשתנה"), אפשר להשתמש במשתנה המקורי דרך הפויינטר, ובשביל זה צריך לעשות  <i>dereferencing</i> לפויינטר. (אפשר לחשוב על זה כ"אנטי-הצבעה", אבל אף אחד לא מדבר ככה).
+</p>
+
+<p>
+מה הכוונה ב"לגשת למשתנה המקורי?" אז ככה, אם יש לכם משתנה שנקרא  <i><tt class="var">i</tt></i>, ויש לכם פויינטר  ל <i><tt class="var">i</tt></i> שנקרא <i><tt class="var">p</tt></i>, אז אתם יכולים להשתמש בdereferenced pointer 
+<i><tt class="var">p</tt></i> <i> ממש כאילו הוא היה המשתנה המקורי <i><tt class="var">i</tt></i></i>!</p>
+
+<p>
+יש לכם כמעט את כל הידע הנדרש בשביל דוגמה. הדברצ'יק האחרון שאתם צריכים לדעת הוא: איך נראה האופרטור שמשמש כדי לבצע dereferencing. והתשובה היא: הכוכבית, שוב: <tt class="operator">*</tt>.  
+אבל אל תבלבלו אותה עם הכוכבית שהשתמשתם בה בהצהרת הפויינטר קודם. זה אותו תו, אבל יש להן משמעות שונה בהקשרים שונים.</p>
+
+<p>והנה דוגמה מלאה:</p>
+
+<pre class="code">
+#include &lt;stdio.h&gt;
+
+int main(void)
+{
+    int i;
+    int *p;  // this is NOT a dereference--this is a type "int*"
+
+    p = &amp;i; // p now points to i
+
+    i = 10;  // i is now 10
+    *p = 20; // i (yes i!) is now 20!!
+
+    printf("i is %d\n", i);   // prints "20"
+    printf("i is %d\n", *p);  // "20"!  dereference-p is the same as i!
+
+    return 0;
+}
+</pre>
+
+
+<p>
+זכרו:  <i><tt class="var">p</tt></i> מחזיק את הכתובת של <i><tt class="var">i</tt></i>, כמו שאפשר לראות בשורה שבה עשינו השמה ל<i><tt class="var">p</tt></i>. והאופרטור של הdereferencing אומר למחשב <i>להשתמש במשתנה שהפויינטר מצביע אליו</i> במקום להשתמש בפויינטר עצמו. ככה הפכנו את <i><tt class="var">*p</tt></i> לסוג של כינוי ל<i><tt class="var">i</tt></i>.</p>
+
+
+
+
+
+<h3 class="sect2title">7.4. <a name="ptpass">העברת פויינטרים כפרמטרים</a></h3>
+
+
+<p> בשלב הזה אתם בטוחים שיש לכם המון ידע על פויינטרים אבל שום דבר לעשות איתם, נכון? זאת אומרת, בשביל מה צריך <i><tt class="var">*p</tt></i> אם אפשר פשוט לכתוב
+<i><tt class="var">i</tt></i> במקום זה?</p>
+
+<p> ובכן ידידיי המעופפים, הכוח האמיתי של פויינטרים נחשף כשמתחילים להעביר אותם לפונקציות. ולמה זה כזה סיפור? אולי אתם זוכרים שקודם אמרתי שאפשר להעביר כל מיני סוגים של פרמטרים לפונקציות והם יועתקו אחד אחד למחסנית, ואז אפשר לשחק איתם בפונקציה ולהחזיר ערך יחיד.</p>
+
+<p> ומה אם אתם רוצים להחזיר מהפונקציה יותר מפיסת מידע אחת? ומה אם אני אענה על השאלה הזאת בשאלה, ככה:</p>
+
+<p> מה קורה כשמעבירים פויינטר כפרמטר לפונקציה? עותק של הפויינטר נכתב למחסנית? <i>ממש ממש כן.</i> זוכרים איך קודם קישקשתי המון על זה ש<i>כל פרמטר ופרמטר</i> מועתק למחסנית, והפונקציה משתמשת בעותקים של הפרמטרים? אז זה נכון גם כאן - הפונקציה תקבל עותק של הפויינטר</p>
+
+<p>
+אבל, עכשיו מגיע החלק המתוחכם: אנחנו מראש הגדרנו את הפויינטר כך שיצביע למשתנה... ואז הפונקציה יכולה לעשות dereferencing לעותק של הפויינטר שיש אצלה, ולהגיע למשתנה המקורי! הפונקציה לא יכולה לראות את המשתנה עצמו, אבל היא בהחלט כן יכולה לעשות dereference לפויינטר של המשתנה הזה! דוגמה:</p>
+
+<pre class="code">
+#include &lt;stdio.h&gt;
+
+void increment(int *p) /* note that it accepts a pointer to an int */
+{
+    *p = *p + 1; /* add one to p */
+}
+
+int main(void)
+{
+    int i = 10;
+
+    printf("i is %d\n", i); /* prints "10" */
+
+    increment(&amp;i); /* note the address-of; turns it into a pointer */
+
+    printf("i is %d\n", i); /* prints "11"! */
+
+    return 0;
+}
+</pre>
+
+
+<p> טוב! יש כמה דברים כאן שכדאי לשים לב אליהם... והראשון הוא שהפונקציה <b><tt class="func">increment()</tt></b> מקבלת <nobr><tt class="type">int*</tt></nobr>
+בתור פרמטר. אנחנו מעבירים אליה <nobr><tt class="type">int*</tt></nobr> כשאנחנו קוראים לה על ידי זה שאנחנו משנים את המשתנה <i><tt class="var">i</tt></i>,  מסוג
+<nobr><tt class="type">int</tt></nobr>  לסוג <nobr><tt class="type">int*</tt></nobr> בעזרת אופרטור <tt class="operator">הכתובת-של</tt> . (זכרו, פויינטר הוא כתובת, אז אפשר ליצור פויינטרים ממשתנים פשוט על ידי העברת משתנה דרך אופרטור <tt class="operator">הכתובת-של</tt>.)</p>
+
+<p> הפונקציה <b><tt class="func">increment()</tt></b> מקבלת עותק של הפויינטר במחסנית. גם הפויינטר המקורי <i><tt class="var">&amp;i</tt></i> (ב
+<b><tt class="func">main()</tt></b>) וגם העותק המקומי של הפויינטר  <i><tt class="var">p</tt></i> (ב
+<b><tt class="func">increment()</tt></b>) מצביעים לאותה כתובת. אז אם עושים dereferencing לאחד מהם זה כבר מאפשר לשנות את המשתנה המקורי <i><tt class="var">i</tt></i>! הפונקציה יכולה להשפיע על משתנים בscope אחר! מגניב!</p>
+
+<p>חובבי פויינטרים ייזכרו שבתחילת המדריך השתמשנו בפונקציה לקריאה מהמקלדת: <b><tt class="func">scanf()</tt></b>. ולמרות שלא זיהיתם את זה אז, השתמשנו ב
+<tt class="operator">כתובת-של</tt> כדי להעביר פויינטר ל<b><tt class="func">scanf()</tt></b>. והיינו חייבים להעביר פויינטר, כי <b><tt class="func">scanf()</tt></b> קוראת מן המקלדת ומאחסנת את התוצאה במשתנה. והדרך היחידה שהיא יכולה לראות את המשתנה המקומי של הפונקציה שקראה לה היא אם נעביר לה פויינטר למשתנה הזה:</p>
+
+<pre class="code">
+int i = 0;
+
+scanf("%d", &amp;i);        /* pretend you typed "12" */
+printf("i is %d\n", i); /* prints "i is 12" */
+</pre>
+
+
+<p>מבינים? <b><tt class="func">scanf()</tt></b> עושה dereference לפויינטר שאנחנו מעבירים לה, ככה שהיא יכולה לשנות את המשתנה שהפויינטר מצביע אליו. ועכשיו אתם יודעים למה חייבים להשתמש באמפרסנד (&) המעצבן הזה שם!</p>
+
+
+
+<table width="100%" border="0" cellspacing="0"cellpadding="0" class="navtable">
+<tr>
+<td align="left"><a href="vars2.html">&lt;&lt;&nbsp;Prev</a></td>
+<td align="center"><a href="index.html">Beej's Guide to C</a></td><td align="right"><a href="structs.html">Next&nbsp;&gt;&gt;</a></td>
+</tr></table>
+
+</body>
+</html>

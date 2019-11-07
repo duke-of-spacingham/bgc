@@ -1,0 +1,415 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Beej's Guide to C Programming</title>
+<link rel="stylesheet" href="bgc.css" type="text/css">
+
+<style>
+body {
+	background-color: white;
+	color: black;
+	font-family: "Times New Roman", "Times", "Georgia", serif;
+	font-size: 12pt;
+	margin: 35pt;
+	margin-top: 10pt;
+	margin-bottom: 10pt;
+	direction: rtl;
+}
+
+#adsense {
+  float: right;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+
+*.joetable {
+	border-width: 1px;
+	border-style: solid;
+	padding: 0.2em;
+}
+
+*.navtable {
+	font-family: "Helvetica","Arial",sans-serif;
+	font-size: 0.8em;
+	border-width: 1px;
+	border-style: solid;
+	background-color: #e7e7e7;
+	border-color: #666;
+	padding: 0.5em;
+}
+
+*.sect1title {
+	font-family: "Helvetica","Arial",sans-serif;
+	font-size: 1.7em;
+	font-weight: bold;
+	margin-bottom: 0.0em;
+}
+
+*.sect2title {
+	font-family: "Helvetica","Arial",sans-serif;
+	font-size: 1.16em;
+	font-weight: bold;
+	margin-top: 1.5em;
+	margin-bottom: 0.0em;
+}
+
+*.sect3title {
+	font-family: "Helvetica","Arial",sans-serif;
+	font-weight: bold;
+	margin-top: 1.5em;
+	margin-bottom: 0.0em;
+}
+
+*.guidetitle {
+	font-family: "Helvetica","Arial",sans-serif;
+	font-weight: bold;
+	font-size: 2em;
+	margin-bottom: 0em;
+}
+
+*.guidesubtitle {
+	font-family: "Helvetica","Arial",sans-serif;
+	font-weight: bold;
+	font-style: italic;
+	font-size: 1.666em;
+	margin-top: 0em;
+}
+
+*.guidetitleauthor {
+	font-family: "Helvetica","Arial",sans-serif;
+	font-weight: bold;
+	margin-bottom: 0em;
+}
+
+*.guideversion,*.guidedate {
+	font-family: "Helvetica","Arial",sans-serif;
+	font-size: 0.8em;
+}
+
+*.guidecopyright {
+	font-family: "Helvetica","Arial",sans-serif;
+	font-size: 0.666em;
+}
+
+*.guidetitleemail {
+	font-family: "Courier New","Courier",monospace; 
+	font-weight: bold;
+	font-size: 0.8em;
+}
+
+*.mainsectbreak {
+	margin-top: 1em;
+	color: #000;
+	border: 0px;
+	background-color: #000;
+	height: 1px;
+	width: 100%;
+}
+
+*.mainsecthr {
+	color: #000;
+	border: 0px;
+	background-color: #000;
+	height: 0.2em;
+	width: 100%;
+}
+
+*.floatleft {
+	float:left;
+}
+
+*.floatright {
+	float:right;
+}
+
+*.padfive {
+	padding-top:5px;
+	padding-left:5px;
+	padding-right:5px;
+	padding-bottom:5px;
+}
+
+*.type,*.const,*.var,*.email,*.func,*.tt,*.operator {
+	font-family: "Courier New","Courier",monospace; 
+	font-size: 0.9em;
+	direction: ltr;
+	unicode-bidi: embed;
+}
+
+*.code,*.screen {
+	font-family: "Courier New","Courier",monospace; 
+	font-size: 0.765em;
+	direction: ltr;
+}
+
+*.em1 {
+	font-size: 1em;
+}
+
+*.com {
+	font-weight: bold;
+}
+
+*.var {
+	font-style: oblique;
+}
+
+*.func {
+	font-weight: bold;
+	direction: ltr;
+	unicode-bidi: embed;
+}
+
+*.titlefunc {
+	font-family: "Courier New","Courier",monospace; 
+	font-weight: bold;
+}
+
+*.titletype {
+	font-family: "Courier New","Courier",monospace; 
+	font-weight: bold;
+}
+
+*.titlevar {
+	font-style: oblique;
+	font-weight: bold;
+}
+
+*.command {
+	font-family: "Courier New","Courier",monospace; 
+	font-weight:bold;
+}
+
+*.singleborder {
+	border: #000,solid,2px;
+	border-color: #222;
+	border-style: solid;
+	border-width: 1px;
+	margin: 1em;
+	padding: 1em;
+}
+
+pre.code {
+	background-color: #e7e7e7;
+	border-color: #000;
+	border-style: solid;
+	border-width: 1px;
+	border-right-width: 2px;
+	border-bottom-width: 2px;
+	margin: 0.2em;
+	padding: 0.2em;
+	direction: ltr;
+}
+
+pre.screen {
+	font-weight: bold;
+	background-color: #e0e0e0;
+	border-color: #000;
+	border-style: solid;
+	border-right-style: dashed;
+	border-bottom-style: dashed;
+	border-width: 1px;
+	margin: 0.2em;
+	padding: 0.2em;
+}
+
+</style>
+
+</head>
+
+<body bgcolor="#ffffff">
+תרגום חלקי (בינתיים) מתוך המדריך של Beej לשפת C: <a href="http://beej.us/guide/bgc/output/html/singlepage/bgc.html">http://beej.us/guide/bgc/output/html/singlepage/bgc.html</a>
+<br/>
+נועד ללימוד עצמי, לא להפצה
+<br/>
+ידע נדרש: HelloWorld, משתנים, אופרטורים, ביטויים, הצהרות, פונקציות, scope, פויינטרים.
+
+<hr class="mainsectbreak"/>
+
+<h2 class="sect1title">8. <a name="structs">מבנים</a></h2><hr class="mainsecthr"/>
+
+
+<p>
+אתם מתעסקים עם משתנים כבר לא מעט זמן, ואפילו גרמתם לכמה מהם לעשות דברים פה ושם, נכון? בדרך כלל אתם אורזים אותם בתוך בלוק בסיסי כלשהו, וזה מספיק.
+</p>
+
+<p>
+אבל לפעמים הגיוני יותר לאסוף אותם לתוך <i>מבנה (structure)</i>. מבנים מאפשרים לכם לקבץ משתנים בצורה הגיונית (או אפילו לא הגיונית, אם ממש בא לכם) ל... אה.... קבוצות. אז אפשר להתייחס לקבוצה כשלם. אחד המקומות בהם זה ממש שימושי הוא כאשר רוצים להעביר 13 טריליון פרמטרים לפונקציה, אבל לא רוצים שהגדרה של הפונקציה תהיה ארוכה מדי. אז כל מה שצריך זה לשים את כל המשתנים למבנה (או <nobr><tt class="type">struct</tt></nobr>, כמו שבדרך כלל קוראים לזה), ואז להעביר את המבנה הזה לפונקציה. (למעשה אנשים בדרך כלל מעבירים פויינטר למבנה, אבל נגיע לזה אחר כך.)
+</p>
+
+<p>
+אז איך משתמשים בדבר הזה? קודם כל, ה<nobr><tt class="type">struct</tt></nobr> עצמו הוא סוג משתנה חדש. אם אתה יוצר משתנה שהוא <nobr><tt class="type">struct foo</tt></nobr>, אז הוא מסוג "<nobr><tt class="type">struct foo</tt></nobr>", בדיוק כמו שהמספר 12 הוא מסוג  "<nobr><tt class="type">int</tt></nobr>". זה אולי נראה קצת מוזר, כי זו בטח הפעם הראשונה שיצרתם סוג חדש, ואולי לא ברור לכם איך זה עובד.
+</p>
+
+<p>
+וכאילו זה לא מספיק מבלבל, מסתבר גם שיש כמה דרכים ליצור ולהשתמש בסוג <nobr><tt class="type">struct</tt></nobr> חדש, ואף אחת מהן לא מאוד אינטואיטיבית. בואו נסתכל על דוגמה של אחת הדרכים בהן ניתן להגדיר <nobr><tt class="type">struct</tt></nobr> חדש:</p>
+
+<pre class="code">
+#include &lt;stdio.h&gt;
+
+/* Here we declare the type so we can use it later: */
+struct stuff {
+    int val;
+    float b;
+};
+
+/* Note that we don't actually have any variables of that type, yet. */
+
+int main(void)
+{
+    /* ok, now let's declare a variable "s" of type "struct stuff" */
+    struct stuff s;
+
+
+    s.val = 3490;  /* assignment into a struct! */
+    s.b = 3.14159;
+
+    printf("The val field in s is: %d\n", s.val);
+
+    return 0;
+}
+</pre>
+
+
+<p>
+הקומפיילר מאפשר לנו להגדיר מראש <nobr><tt class="type">struct</tt></nobr> כמו בדוגמה. אנחנו יכולים להשתמש בו אחר כך, כפי שאנחנו עושים ב<b><tt class="func">main()</tt></b> כשאנחנו מכניסים לתוכו ערכים. כשאנחנו כותבים דברים כמו <tt class="tt">s.val = 3490</tt>, אנחנו משתמשים באופרטור מיוחד כדי לגשת אל השדה<nobr><tt class="type">val</tt></nobr>. לאופרטור הזה קוראים <i>"אופרטור נקודה"</i>
+(<tt class="operator">.</tt>).</p>
+
+
+
+<h3 class="sect2title">8.1. <a name="structpt">פויינטרים ל<nobr><b><tt class="titletype">struct</tt></b></nobr>ים</a></h3>
+
+
+<p>עכשיו בואו נדבר על איך מעבירים את ה <nobr><tt class="type">struct</tt></nobr>ים האלו לפונקציות אחרות וכל זה. כבר הזכרתי שבטח תרצו להעביר פויינטר ל<nobr><tt class="type">struct</tt></nobr> במקום את ה<nobr><tt class="type">struct</tt></nobr> עצמו. מדוע?</p>
+
+<p>
+נכון שזה ממש מעצבן כשהמרצה שואל אתכם ככה אבל אתם עייפים מדי בהרצאה מכדי שבכלל תתחילו לחשוב על זה? ואתם בטח חושבים לעצמכם "פשוט תגלה את התשובה ובוא נתקדם", נכון?
+</p>
+
+<p>
+טוב! אז זה בדיוק מה שנעשה! אז ככה, תזכרו שכשאתם מעבירים פרמטרים לפונקציות, ואני אכין את הגרון שלי כי אני עומד להגיד את זה שוב, 
+<i>כ-ל פרמטר כולל כולם מועתק למחסנית כשאתם קוראים לפונקציה!</i>  אז אם יש לכם <nobr><tt class="type">struct</tt></nobr> עצום בגודל של איזה 80,000 בייט, הוא יועתק למחסנית כשאתם מעבירים אותו. וזה לוקח זמן.
+</p>
+
+<p>
+אז למה לא להעביר במקום זה פויינטר ל <nobr><tt class="type">struct</tt></nobr>? כן, אני שומע אתכם ממלמלים "והפויינטר לא יועתק למחסנית?" יועתק, אבל בימינו פויינטר הוא בגודל 4 עד 8 בייט, אז זה הרבה יותר קל למחשב ועובד יותר מהר.
+</p>
+
+<p>
+ויש אפילו קצת <i>syntactic sugar</i> שעוזר לגשת לשדות דרך פויינטר ל<nobr><tt class="type">struct</tt></nobr>. למי שלא יודע, syntactic sugar הוא תכונה של הקומפיילר שהופכת את הקוד לפשוט יותר, למרות שיש דרך אחרת לכשות בדיוק את אותו דבר. למשל, כבר הזכרנו את  <tt class="operator">+=</tt> כמה פעמים... מה זה עושה? סיפרתי לכם? למען האמת בכל ההתרגשות איבדתי את הראש. הנה דוגמה שתראה איך הוא פועל כמו שני אופרטורים, אבל קצת יותר קל להשתמש בו. זה syntactic sugar:</p>
+
+<pre class="code">
+i = i + 12;  /* add 12 to i */
+i += 12;     /* &lt;-- does exactly the same thing as "i = i + 12" */
+</pre>
+
+
+<p>
+רואים? זה לא אופרטור הכרחי, כי יש דרך אחרת לעשות בדיוק אותו דבר, אבל אנשים מעדיפים את הקיצור.</p>
+
+<p>
+אבל סטינו לגמרי מהנושא. דיברתי על פויינטרים ל<nobr><tt class="type">struct</tt></nobr>ים, ועכשיו נדבר על איך לגשת אליהם. הנה דוגמה שבה יש לנו משתנה <nobr><tt class="type">struct</tt></nobr> ומשתנה נוסף שהוא פויינטר לסוג ה<nobr><tt class="type">struct</tt></nobr> הזה, וקצת צורות שימוש בשניהם (שישתמשו ב<nobr><tt class="type">כל מיני עזרי struct</tt></nobr> שראינו קודם):</p>
+
+<pre class="code">
+#include &lt;stdio.h&gt;
+
+/* Here we declare the type so we can use it later: */
+struct antelope {
+    int val;
+    float something;
+};
+
+int main(void)
+{
+    struct antelope a;
+    struct antelope *b; /* this is a pointer to a struct antelope */
+
+    b = &amp;a; /* let's point b at a for laughs and giggles */
+
+    a.val = 3490; /* normal struct usage, as we've already seen */
+
+    /* since b is a pointer, we have to dereference it before we can */
+    /* use it:                                                       */
+
+    (*b).val = 3491;
+
+    /* but that looks kinda bad, so let's do the exact same thing  */
+    /* except this time we'll use the "arrow operator", which is a */
+    /* bit of syntactic sugar:                                     */
+
+    b-&gt;val = 3491; /* EXACTLY the same as (*b).val = 3491; */
+
+    return 0;
+}
+</pre>
+
+
+<p>
+אז ראינו כאן כמה דברים. קודם כל יש לנו את הדרך לעשות dereference לפויינטר של <nobr><tt class="type">struct</tt></nobr>, ואז לגשת אליו בעזרת האופרטור נקודה (<tt class="operator">.</tt>). זאת הדרך הקלאסית לעשות דברים: יש לנו פויינטר, ואז אנחנו משתמשים בו כאילו 
+<i>הוא</i> המשתנה.</p>
+
+<p>
+אבל syntactic sugar להצלה! אפשר להשתמש ב<i>אופרטור חץ</i> (<tt class="operator">-&gt;</tt>) במקום באופרטור נקודה. וזה מונע מאיתנו להיראות כאילו יש לנו קוד מכוער, נכון? לאופרטור חץ יש dereferene אוטומטי, כך שאתם לא צריכים להתעסק עם כל הדקדוק כשיש לכם פויינטר ל<nobr><tt class="type">struct</tt></nobr>. אז הכלל הוא כזה: אם יש לכם <nobr><tt class="type">struct</tt></nobr>, השתמשו באופרטור נקודה. אם יש לכם<i>פויינטר</i> ל<nobr><tt class="type">struct</tt></nobr>, השתמשו באופרטור חץ
+(<tt class="operator">-&gt;</tt>).</p>
+
+
+
+
+
+<h3 class="sect2title">8.2. <a name="ptsfunc">העברת פויינטרים של <nobr><b><tt class="titletype">struct</tt></b></nobr> לפונקציות</a></h3>
+
+
+<p>
+זה הולך להיות קטע קצר מאוד על העברת פויינטרים של structs לפונקציות. כי אתם כבר יודעים איך להעביר משתנים כפרמטרים לפונקציות, ואתם כבר יודעים איך ליצור ולהשתמש בפויינטרים ל<nobr><tt class="type">struct</tt></nobr>ים, אז אין הרבה מה להגיד כאן. דוגמה תוכל להראות את זה בישירותיות ("ישירותיות" - הכי אוקסימורון שיצא לי לראות):
+</p>
+
+<p>
+אוף, למה אני תמיד יושב בצד הזה של האוטובוס? הרי אני יודע שהשמש נכנסת מכאן, ואני בקושי יכול לראות משהו על המסך עם כל האור המבריק הזה עליו. אני פשוט לא לומד. טוב, בכל מקרה...</p>
+
+<pre class="code">
+#include &lt;stdio.h&gt;
+
+struct mutantfrog {
+    int num_legs;
+    int num_eyes;
+};
+
+void build_beejs_frog(struct mutantfrog *f)
+{
+    f-&gt;num_legs = 10;
+    f-&gt;num_eyes = 1;
+}
+
+int main(void)
+{
+    struct mutantfrog rudolph;
+
+    build_beejs_frog(&amp;rudolph);  /* passing a pointer to the struct */
+
+    printf("leg count: %d\n", rudolph.num_legs); /* prints "10" */
+    printf("eye count: %d\n", rudolph.num_eyes); /* prints "1" */
+
+    return 0;
+}
+</pre>
+
+
+<p>
+יש כאן מהו נוסף שכדאי לשים לב אליו: אם היינו מעבירים את ה <nobr><tt class="type">stuct</tt></nobr> במקום פויינטר ל<nobr><tt class="type">struct</tt></nobr>, מה היה קורה בפונקציה <b><tt class="func">build_beejs_frog()</tt></b> כשהיינו משנים את הערכים? נכון, הם היו משתנים רק בעותק המקומי, ולא ב<b><tt class="func">main()</tt></b>. אז בקיצור, פויינטרים ל<nobr><tt class="type">struct</tt></nobr>ים הם הדבר הנכון להשתמש בו כשרוצים להעביר <nobr><tt class="type">struct</tt></nobr>ים לפונקציות.
+</p>
+
+
+<p>
+נוסיף הערה קצרה כדי לעזור לכם להתחיל לחשוב על איך אתם הולכים לפרק את הקוד לבלוקים בסיסיים. יש לכם עכשיו הרבה כלים שונים: לולאות, תנאים, <nobr><tt class="type">struct</tt></nobr>ים, והכי חשוב: פונקציות. היזכרו באיך למדתם לפרק פרוייקטים לחלקים קטנים, וחישבו איך תשתמשו בכל אחד מן הכלים הללו.
+</p>
+
+
+<table width="100%" border="0" cellspacing="0"cellpadding="0" class="navtable">
+<tr>
+<td align="left"><a href="vars2.html">&lt;&lt;&nbsp;Prev</a></td>
+<td align="center"><a href="index.html">Beej's Guide to C</a></td><td align="right"><a href="structs.html">Next&nbsp;&gt;&gt;</a></td>
+</tr></table>
+
+</body>
+</html>

@@ -1,0 +1,444 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Beej's Guide to C Programming</title>
+<link rel="stylesheet" href="bgc.css" type="text/css">
+
+<style>
+body {
+	background-color: white;
+	color: black;
+	font-family: "Times New Roman", "Times", "Georgia", serif;
+	font-size: 12pt;
+	margin: 35pt;
+	margin-top: 10pt;
+	margin-bottom: 10pt;
+	direction: rtl;
+}
+
+#adsense {
+  float: right;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+
+*.joetable {
+	border-width: 1px;
+	border-style: solid;
+	padding: 0.2em;
+}
+
+*.navtable {
+	font-family: "Helvetica","Arial",sans-serif;
+	font-size: 0.8em;
+	border-width: 1px;
+	border-style: solid;
+	background-color: #e7e7e7;
+	border-color: #666;
+	padding: 0.5em;
+}
+
+*.sect1title {
+	font-family: "Helvetica","Arial",sans-serif;
+	font-size: 1.7em;
+	font-weight: bold;
+	margin-bottom: 0.0em;
+}
+
+*.sect2title {
+	font-family: "Helvetica","Arial",sans-serif;
+	font-size: 1.16em;
+	font-weight: bold;
+	margin-top: 1.5em;
+	margin-bottom: 0.0em;
+}
+
+*.sect3title {
+	font-family: "Helvetica","Arial",sans-serif;
+	font-weight: bold;
+	margin-top: 1.5em;
+	margin-bottom: 0.0em;
+}
+
+*.guidetitle {
+	font-family: "Helvetica","Arial",sans-serif;
+	font-weight: bold;
+	font-size: 2em;
+	margin-bottom: 0em;
+}
+
+*.guidesubtitle {
+	font-family: "Helvetica","Arial",sans-serif;
+	font-weight: bold;
+	font-style: italic;
+	font-size: 1.666em;
+	margin-top: 0em;
+}
+
+*.guidetitleauthor {
+	font-family: "Helvetica","Arial",sans-serif;
+	font-weight: bold;
+	margin-bottom: 0em;
+}
+
+*.guideversion,*.guidedate {
+	font-family: "Helvetica","Arial",sans-serif;
+	font-size: 0.8em;
+}
+
+*.guidecopyright {
+	font-family: "Helvetica","Arial",sans-serif;
+	font-size: 0.666em;
+}
+
+*.guidetitleemail {
+	font-family: "Courier New","Courier",monospace; 
+	font-weight: bold;
+	font-size: 0.8em;
+}
+
+*.mainsectbreak {
+	margin-top: 1em;
+	color: #000;
+	border: 0px;
+	background-color: #000;
+	height: 1px;
+	width: 100%;
+}
+
+*.mainsecthr {
+	color: #000;
+	border: 0px;
+	background-color: #000;
+	height: 0.2em;
+	width: 100%;
+}
+
+*.floatleft {
+	float:left;
+}
+
+*.floatright {
+	float:right;
+}
+
+*.padfive {
+	padding-top:5px;
+	padding-left:5px;
+	padding-right:5px;
+	padding-bottom:5px;
+}
+
+*.type,*.const,*.var,*.email,*.func,*.tt,*.operator {
+	font-family: "Courier New","Courier",monospace; 
+	font-size: 0.9em;
+	direction: ltr;
+	unicode-bidi: embed;
+}
+
+*.code,*.screen {
+	font-family: "Courier New","Courier",monospace; 
+	font-size: 0.765em;
+}
+
+*.em1 {
+	font-size: 1em;
+}
+
+*.com {
+	font-weight: bold;
+}
+
+*.var {
+	font-style: oblique;
+}
+
+*.func {
+	font-weight: bold;
+	direction: ltr;
+	unicode-bidi: embed;
+}
+
+*.titlefunc {
+	font-family: "Courier New","Courier",monospace; 
+	font-weight: bold;
+}
+
+*.titletype {
+	font-family: "Courier New","Courier",monospace; 
+	font-weight: bold;
+}
+
+*.titlevar {
+	font-style: oblique;
+	font-weight: bold;
+}
+
+*.command {
+	font-family: "Courier New","Courier",monospace; 
+	font-weight:bold;
+}
+
+*.singleborder {
+	border: #000,solid,2px;
+	border-color: #222;
+	border-style: solid;
+	border-width: 1px;
+	margin: 1em;
+	padding: 1em;
+}
+
+pre.code {
+	background-color: #e7e7e7;
+	border-color: #000;
+	border-style: solid;
+	border-width: 1px;
+	border-right-width: 2px;
+	border-bottom-width: 2px;
+	margin: 0.2em;
+	padding: 0.2em;
+	direction: ltr;
+}
+
+pre.screen {
+	font-weight: bold;
+	background-color: #e0e0e0;
+	border-color: #000;
+	border-style: solid;
+	border-right-style: dashed;
+	border-bottom-style: dashed;
+	border-width: 1px;
+	margin: 0.2em;
+	padding: 0.2em;
+}
+
+</style>
+
+</head>
+
+<body bgcolor="#ffffff">
+תרגום חלקי (בינתיים) מתוך המדריך של Beej לשפת C: <a href="http://beej.us/guide/bgc/output/html/singlepage/bgc.html">http://beej.us/guide/bgc/output/html/singlepage/bgc.html</a>
+<br/>
+נועד ללימוד עצמי, לא להפצה
+<br/>
+ידע נדרש: HelloWorld, משתנים, אופרטורים, ביטויים, הצהרות, פונקציות.
+
+<hr class="mainsectbreak"/><h2 class="sect1title">6. <a name="bbrevisited">שובם של המשתנים</a></h2><hr class="mainsecthr"/>
+
+
+<p>בדיוק כשהייתם בטוחים שאתם יודעים כל מה שיש לדעת על משתנים, מסתער עליכם מהחושך החלק הזה של המדריך! מה?! יש עוד?!</p>
+
+<p>כן, חוששתני שיש, מצטער. בפרק הזה נדבר על כמה דברים שיקחו את הכוח שיש לכם על משתנים, ויגבירו  אותו <i>בטירוף</i>.  כן, בשלב הזה אתם כבר מבינים שלדרמטיות יש חלק מכובד במדריך הזה, כך שהפעם זה בטח אפילו לא הפתיע אתכם, למרבה האירוניה.</p>
+
+<p>איפה הייתי? אה, כן, בואו נדבר על <i>scope</i> של משתנים ועל<i>storage classes</i>.</p>
+
+
+
+<h3 class="sect2title">6.1. <a name="varscope">ב"Scope"</a></h3>
+
+
+<p>זוכרים שבחלק מהפונקציות שהגדרנו קודם היו משתנים שהיו נגישים מחלקים אחרים בתוכנה, אבל לא נגישים לאחרים? אז ככה, אם אתם יכולים להשתמש במשתנה מחלק מסויים של תוכנה, אומרים עליו שהוא "בscope" (בניגוד ל"מחוץ לscope"). משתנה יהיה בscope אם הוא מוצהר בתוך הבלוק (שזה אומר בתוך הסוגריים המסולסלים) שרץ כרגע.
+</p>
+
+<p>נסתכל על דוגמה:</p>
+
+<pre class="code">
+int frotz(int a)
+{
+    int b;
+
+    b = 10; /* in scope (from the local definition) */
+    a = 20; /* in scope (from the parameter list) */
+    c = 30; /* ERROR, out of scope (declared in another block, in main()) */
+}
+
+int main(void)
+{
+    int c;
+
+    c = 20; /* in scope */
+    b = 30; /* ERROR, out of scope (declared above in frotz()) */
+
+    return 0;
+}
+</pre>
+
+
+<p>כמו שאתם רואים שאתם חייבים להצהיר את המשתנים מקומית כדי שיהיו בscope. שימו לב שהפרמטר <i><tt class="var">a</tt></i>  גם נמצא בscope של פונקציה <b><tt class="func">frotz()</tt></b></p>
+
+<p>למה אני מתכוון כשאני אומר  <i>משתנים מקומיים</i>? משתנים מקומיים הם משתנים שקיימים רק בבלוק יחיד של קוד, ונגישים רק ממנו ומבלוקים בסיסיים של קוד שנמצאים בתוכו (קוד של בלוק הוא החלק שנמצא בסוגריים מסולסלים). לדוגמה:</p>
+
+<pre class="code">
+int main(void)
+{  /* start of basic block */
+    int a = 5; /* local to main() */
+
+    if (a != 0) {
+        int b = 10; /* local to if basic block */
+        
+        a = b; /* perfectly legal--both a and b are visible here */
+    }
+
+    b = 12; /* ERROR -- b is not visible out here--only in the if */
+
+    { /* notice I started a basic block with no statement--this is legal */
+        int c = 12;
+        int a; /* Hey!  Wait!  There was already an "a" out in main! */
+
+        /* the a that is local to this block hides the a from main */
+        a = c; /* this modified the a local to this block to be 12 */
+    }
+
+    /* but this a back in main is still 10 (since we set it in the if): */
+    printf("%d\n", a);
+
+    return 0;
+}
+</pre>
+
+
+<p>יש בדוגמה הזאת הרבה דברים, אבל כל זה מציג כלל פשוט: במשתנים מקומיים אפשר להשתמש רק במסגרת הבלוק הבסיסי שבו הם הוצהרו, או במסגרת הבלוקים הבסיסיים שבתוכו. השורה עם הERROR בדוגמה מראה לכם בדיוק מה <i>לא</i> יעבוד</p>.
+
+<p>
+נסטה לרגע מהנושא ונסתכל על המקרה המיוחד של פרמטרים שמועברים לפונקציה. הם נמצאים בscope של כל הפונקציה, ואפשר לשנות אותם כמה שמתחשק. הם בדיוק כמו משתנים מקומיים מבחינת הפונקציה, כמובן חוץ מהעובדה שהם מכילים עותק של מידע שהועבר פנימה.
+</p>
+
+<pre class="code">
+void foo(int a)
+{
+    int b;
+
+    a = b; /* totally legal */
+}
+</pre>
+
+
+
+
+<h4 class="sect3title">6.1.1. <a name="globals">משתנים גלובליים</a></h4>
+
+
+<p>ישנם סוגים נוספים של משתנים חוץ ממשתנים מקומיים. ישנם לדוגמה <i>משתנים גלובליים</i>.  אחלה שם. למרות שהם לא בדיוק להיט ממספר סיבות, הם עדיין מרכיב מאוד חזק של השפה. היזהרו עם הכוח הזה, כי שימוש לא נכון בו יכול לגרום לקוד שקשה מאוד לתחזק.
+</p>
+
+<p>משתנה גלובלי נגיש לאורך כל הקובץ בו הוא מוגדר (או מוכרז, נדבר על זה מאוחר יותר). כך שהוא בדיוק כמו משתנה מקומי, רק שאפשר להשתמש בו מכל מקום. אז בעצם הוא בכלל לא כמו מקומי. אבל הנה דוגמה:
+</p>
+
+<pre class="code">
+#include &lt;stdio.h&gt;
+
+/* this is a global variable.  We know it's global, because it's */
+/* been declared in "global scope", and not in a basic block somewhere */
+int g = 10;
+
+void afunc(int x)
+{
+    g = x; /* this sets the global to whatever x is */
+}
+
+int main(void)
+{
+    g = 10;    /* global g is now 10 */
+    afunc(20); /* but this function will set it to 20 */
+    printf("%d\n", g); /* so this will print "20" */
+
+    return 0;
+}
+</pre>
+
+
+<p>זוכרים איך משתנים מקומיים נכנסים למחסנית? אז גלובליים נכנסים ל<i>heap</i>, שהוא חלק אחר בזכרון. ושניהם לא ייפגשו לעולם. אפשר לחשוב על הheap כיותר "קבועה" מהמחסנית, בהרבה מובנים.</p>
+
+<p>טוב הזכרתי שמשתנים גלובליים יכולים להיות מסוכנים. למה? כי, לדוגמה, בפרוייקט גדול יכול להיות שיהיו מיליונתלפים משתנים גלובליים שיוגדרו על ידי מליונתלפים מתכנתים שונים. מה יקרה אם הם יתנו להם שמות זהים? מה אם אתם חושבים שאתם משתמשים במשתנה מקומי, אבל שכחתם להצהיר עליו, אז בעצם אתם משתמשים במקום זה במשתנה גלובלי?</p>
+
+<p>(הופה, זאת הערה טובה: אם מצהירים על משתנה מקומי עם אותו שם של משתנה גלובלי, זה מסתיר את המשתנה הגלובלי, וכל הפעולות יתבצעו על המשתנה המקומי.)</p>
+
+<p>מה עוד יכול להשתבש? לפעמים שימוש במשתנים גלובליים מעודד אנשים לאגרן את הקוד שלהם בצורה פחות טובה ממה שהם היו מארגנים בלעדיהם. אז מומלץ לא להשתמש במשתנים גלובליים אלא אם אין שום דרך נורמלית אחרת להעביר את המידע לאן שצריך.</p>
+
+<p>ויש דבר נוסף שכדאי לשקול: כמה זה הגיוני לאחסן את המידע במקום גלובלי שכולם יכולים לראות? לדוגמה, אם מדובר במשחק שבו משתמשים ב"טמפרטורה של העולם" בהרבה מקומות, כנראה כן כדאי לשים אותה במשתנה גלובלי. למה? בגלל שיהיה ממש מעצבן להעביר אותה ממקום למקום, וכולם צריכים אותה באותה מידה.</p>
+
+<p>מצד שני, "הטמפרטורה של הזרת של הבחור ההוא" כנראה לא כל כך תעניין את שאר היקום. כנראה עדיף לאחסן את המידע הזה במקום שיותר קשור לבחור ההוא מאשר במקום גלובלי. נדבר מאוחר יותר על קישור מידע עם דברים (יופי של משפט שלא אומר כלום).</p>
+
+
+
+
+
+
+
+
+<h3 class="sect2title">6.2. <a name="stclasses">Storage Classes</a></h3>
+
+
+<p>מה זה storage class? זה class לאחסון משתנים.</p>
+
+<p>על לא דבר.</p>
+
+<p>נא לא להתבלבל עם classes בC++, כי זה בכלל לא דומה.
+</p>
+
+<p>אז מה עושה הצהרה על storage class? היא אומרת לקומפיילר איפה לאכסן את הנתונים, לדוגמה במחסנית או בheap, וגם האם מקום האכסון של הנתונים של המשתנה כבר מוצהר במקום אחר.</p>
+
+<p>"מה?"</p>
+
+<p>
+בואו פשוט נסתכל על כמה דוגמאות והכל יהיה ברור יותר.
+</p>
+
+
+
+<h4 class="sect3title">6.2.1. <a name="static">תנו לי בסטטי!</a></h4>
+
+
+<p>מוכנים? הנה דוגמה: אני יושב לי ברכבת התחתית של איזור המפרץ כשאני מקליד את זה בדרך הביתה מהעבודה. ויש במושב מולי זוג צעיר שמתגפף לו להנאתו וזה לגמרי מסיח את דעתי.</p>
+
+<p>אה, מה. לא, דוגמה! כן! טוב, הנה:</p>
+
+<pre class="code">
+void print_plus_one(void)
+{
+    static int a=0; /* static storage class! */
+
+    printf("%d\n", a);
+
+    a++;  /* increment the static value */
+}
+
+int main(void)
+{
+    print_plus_one(); /* prints "0" */
+    print_plus_one(); /* prints "1" */
+    print_plus_one(); /* prints "2" */
+    print_plus_one(); /* prints "3" */
+    print_plus_one(); /* prints "4" */
+
+    return 0;
+}
+</pre>
+
+
+<p>מה קורה כאן? מה זה הקסם הזה? זה לא אמור להיות משתנה מקומי שם ב<b><tt class="func">print_plus_one()</tt></b>? ומשתנה מקומי לא אמור להיות מוקצה במחסנית? והוא לא אמור להיעלם כשהפונקציה חוזרת? איך יתכן שהתוכנה זוכרת את הערך מן הקריאה האחרונה לפונקציה?</p>
+
+<p>התשובה: היא משתמשת בקסם המודרני שנקרא <nobr><tt class="type">static</tt></nobr>. זהו directive שמופיע לפני סוג המשתנה ואומר לקומפיילר לאחסן את המידע בheap במקום במחסנית! ווואווו! זוכרים שהheap נחשב יותר קבוע? אז הערך באמת מאותחל פעם אחת(בהגדרה), והוא לעולם לא מאותחל שוב, כך שכל פעולה שמבוצעת עליו מצטרפת לפעולות קודמות.
+</p>
+
+<p>כנראה תגלו עד כמה זה שימושי רק בשלב מאוחר יותר, אבל מדובר במשהו מספיק נפוץ כדי שתדעו עליו כבר עכשיו.</p>
+
+
+
+
+
+<h4 class="sect3title">6.2.2. <a name="otherstor">Storage Classes  אחרות</a></h4>
+
+
+<p>כן, יש גם storage classes אחרות. ברירת המחדל היא <nobr><tt class="type">auto</tt></nobr>, שאף פעם לא רואים בשטח, כי היא ברירת מחדל.
+</p>
+
+<p>ויש גם את <nobr><tt class="type">extern</tt></nobr> שאומר לקומפיילר שההגדרה של המשתנה נמצאת בקובץ אחר. זה מאפשר לכם להתייחס למשתנה גלובלי מתוך קובץ, גם אם ההגדרה שלו היא במקום אחר לגמרי. להגדיר אותו בשני מקומות זה לא חוקי, אבל מאחר שהוא גלובלי, כדאי שהוא כן יהיה נגיש מקבצי קוד שונים.</p>
+
+<p>
+אני יודע, קשה לדמיין את זה עכשיו, אבל תוכנות כן נעשות גדולות עד שהן מתפרשות על יותר מקובץ אחד. <tt>:-)</tt></p>
+
+
+</body>
+</html>
